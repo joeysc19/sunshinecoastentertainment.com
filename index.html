@@ -285,6 +285,13 @@
             content: attr(data-icon);
         }
 
+        .content-card-video {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 12px 12px 0 0;
+        }
+
         .content-card-content {
             padding: 1.5rem;
         }
@@ -537,6 +544,7 @@
                 category: 'comedy',
                 description: 'Hilarious roving comedy show with international performers',
                 icon: '🎪',
+                video: 'https://player.vimeo.com/video/695996984',
                 rating: 4.8,
                 reviews: 324
             },
@@ -648,9 +656,17 @@
 
         function createCardHTML(item) {
             const stars = '⭐'.repeat(Math.floor(item.rating));
+            const hasVideo = item.video ? true : false;
+            
             return `
                 <div class="content-card">
-                    <div class="content-card-img" data-icon="${item.icon}"></div>
+                    ${hasVideo ? 
+                        `<iframe class="content-card-video" src="${item.video}" 
+                            title="${item.title}" frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen></iframe>` :
+                        `<div class="content-card-img" data-icon="${item.icon}"></div>`
+                    }
                     <div class="content-card-content">
                         <span class="category">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
                         <h3>${item.title}</h3>
