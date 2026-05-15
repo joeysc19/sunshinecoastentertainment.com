@@ -284,7 +284,22 @@
         .content-card-img::after {
             content: attr(data-icon);
         }
+        .content-card-video-wrap {
+            width: 100%;
+            position: relative;
+            padding-top: 56.25%;
+            overflow: hidden;
+            border-radius: 12px 12px 0 0;
+        }
 
+        .content-card-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
         .content-card-video {
             width: 100%;
             height: 200px;
@@ -545,6 +560,7 @@
                 description: 'Hilarious roving comedy show with international performers',
                 icon: '🎪',
                 video: 'https://player.vimeo.com/video/695996984',
+                videoLink: 'https://vimeo.com/695996984',
                 rating: 4.8,
                 reviews: 324
             },
@@ -661,10 +677,10 @@
             return `
                 <div class="content-card">
                     ${hasVideo ? 
-                        `<iframe class="content-card-video" src="${item.video}" 
+                        `<div class="content-card-video-wrap"><iframe class="content-card-video" src="${item.video}?badge=0&autoplay=0&title=0&byline=0" 
                             title="${item.title}" frameborder="0" 
-                            allow="autoplay; fullscreen; picture-in-picture" 
-                            allowfullscreen></iframe>` :
+                            allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
+                            allowfullscreen loading="lazy"></iframe></div>` :
                         `<div class="content-card-img" data-icon="${item.icon}"></div>`
                     }
                     <div class="content-card-content">
@@ -676,6 +692,7 @@
                             <span class="rating-value">${item.rating}/5 (${item.reviews})</span>
                         </div>
                         <button class="review-btn" onclick="alert('Thanks for your interest in: ${item.title}')">View Details</button>
+                        ${item.videoLink ? `<a class="review-btn" href="${item.videoLink}" target="_blank" rel="noopener">Watch on Vimeo</a>` : ''}
                     </div>
                 </div>
             `;
