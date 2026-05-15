@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EntertainHub - Your Entertainment Destination</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #e74c3c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e74c3c;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23222" width="1200" height="600"/><circle cx="200" cy="150" r="100" fill="%23e74c3c" opacity="0.1"/><circle cx="1000" cy="400" r="150" fill="%233498db" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #ecf0f1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #e74c3c;
+        }
+
+        .btn-secondary:hover {
+            background: #e74c3c;
+            transform: translateY(-2px);
+        }
+
+        /* Categories Section */
+        .categories {
+            margin: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #e74c3c;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            background: rgba(231, 76, 60, 0.2);
+            border-color: #e74c3c;
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Content Grid */
+        .content-section {
+            margin: 3rem 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .content-card:hover {
+            transform: scale(1.05);
+            border-color: #e74c3c;
+        }
+
+        .content-poster {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .content-info {
+            padding: 1.5rem;
+        }
+
+        .content-info h3 {
+            margin-bottom: 0.5rem;
+            color: #e74c3c;
+        }
+
+        .content-info p {
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            margin-bottom: 1rem;
+        }
+
+        .rating {
+            color: #f39c12;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid #e74c3c;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #e74c3c;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: #95a5a6;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎬 EntertainHub</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#trending">Trending</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Welcome to EntertainHub</h1>
+            <p>Your ultimate destination for movies, shows, music, and more</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('categories')">Explore Now</button>
+                <button class="btn btn-secondary" onclick="alert('Sign up feature coming soon!')">Sign Up</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Entertainment Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showCategory('Movies')">
+                    <div class="category-icon">🎥</div>
+                    <h3>Movies</h3>
+                    <p>Blockbusters and Classics</p>
+                </div>
+                <div class="category-card" onclick="showCategory('TV Shows')">
+                    <div class="category-icon">📺</div>
+                    <h3>TV Shows</h3>
+                    <p>Binge-worthy Series</p>
+                </div>
+                <div class="category-card" onclick="showCategory('Music')">
+                    <div class="category-icon">🎵</div>
+                    <h3>Music</h3>
+                    <p>Top Hits & Artists</p>
+                </div>
+                <div class="category-card" onclick="showCategory('Podcasts')">
+                    <div class="category-icon">🎙️</div>
+                    <h3>Podcasts</h3>
+                    <p>Stories & Interviews</p>
+                </div>
+                <div class="category-card" onclick="showCategory('Gaming')">
+                    <div class="category-icon">🎮</div>
+                    <h3>Gaming</h3>
+                    <p>Latest Games & Reviews</p>
+                </div>
+                <div class="category-card" onclick="showCategory('Live Events')">
+                    <div class="category-icon">🎪</div>
+                    <h3>Live Events</h3>
+                    <p>Concerts & Festivals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section class="content-section" id="trending">
+        <div class="container">
+            <h2 class="section-title">Trending Now</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="content-poster">🎬</div>
+                    <div class="content-info">
+                        <h3>Epic Adventure Film</h3>
+                        <p>An thrilling journey across continents</p>
+                        <div class="rating">★★★★★ 9.2/10</div>
+                        <button class="btn btn-primary" style="width: 100%;">Watch Now</button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-poster">📺</div>
+                    <div class="content-info">
+                        <h3>Mystery Series</h3>
+                        <p>Uncover dark secrets in this gripping drama</p>
+                        <div class="rating">★★★★☆ 8.7/10</div>
+                        <button class="btn btn-primary" style="width: 100%;">Watch Now</button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-poster">🎵</div>
+                    <div class="content-info">
+                        <h3>Summer Hits Album</h3>
+                        <p>The hottest tracks of the season</p>
+                        <div class="rating">★★★★★ 9.0/10</div>
+                        <button class="btn btn-primary" style="width: 100%;">Listen Now</button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-poster">🎮</div>
+                    <div class="content-info">
+                        <h3>Action RPG</h3>
+                        <p>Battle through fantasy realms with friends</p>
+                        <div class="rating">★★★★☆ 8.5/10</div>
+                        <button class="btn btn-primary" style="width: 100%;">Play Now</button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-poster">🎙️</div>
+                    <div class="content-info">
+                        <h3>True Crime Podcast</h3>
+                        <p>Real stories, real mysteries, real answers</p>
+                        <div class="rating">★★★★★ 9.3/10</div>
+                        <button class="btn btn-primary" style="width: 100%;">Listen Now</button>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="content-poster">🎪</div>
+                    <div class="content-info">
+                        <h3>Summer Music Festival</h3>
+                        <p>Three days of amazing live performances</p>
+                        <div class="rating">★★★★★ 9.1/10</div>
+                        <button class="btn btn-primary" style="width: 100%;">Get Tickets</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <p>EntertainHub is your premier destination for all entertainment needs, bringing you the best content from around the world.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#trending">Trending</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EntertainHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function showCategory(category) {
+            alert(`Welcome to ${category}! Content coming soon.`);
+        }
+    </script>
+</body>
+</html>
