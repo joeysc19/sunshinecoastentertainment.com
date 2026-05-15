@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sunshine Coast Entertainment - Roving, Shows & Features</title>
+    <!-- Force rebuild -->
     <style>
         * {
             margin: 0;
@@ -374,6 +375,16 @@
             margin-bottom: 1rem;
         }
 
+        .fallback-text {
+            color: #555;
+            font-size: 0.95rem;
+            margin-top: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: #f8f8f8;
+            border-radius: 8px;
+            border: 1px solid #e3e3e3;
+        }
+
         .rating {
             display: flex;
             align-items: center;
@@ -739,6 +750,7 @@
                         </div>
                         <button class="review-btn" onclick="alert('Thanks for your interest in: ${item.title}')">View Details</button>
                         ${item.videoLink ? `<a class="review-btn" href="${item.videoLink}" target="_blank" rel="noopener">Watch on Vimeo</a>` : ''}
+                        ${item.video ? `<p class="fallback-text">If the player does not load, use the link above to watch the video on Vimeo.</p>` : ''}
                     </div>
                 </div>
             `;
