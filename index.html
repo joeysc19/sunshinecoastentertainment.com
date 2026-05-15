@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EntertainHub - Your Entertainment Destination</title>
+    <title>Sunshine Coast Entertainment - Roving, Shows & Features</title>
     <style>
         * {
             margin: 0;
@@ -13,29 +13,24 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
             line-height: 1.6;
-            min-height: 100vh;
         }
 
-        /* Header & Navigation */
-        header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem 0;
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 2px solid #e74c3c;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .container {
+        nav .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -44,7 +39,10 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #e74c3c;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         nav ul {
@@ -56,399 +54,435 @@
         nav a {
             color: #fff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover {
-            color: #e74c3c;
+            color: #ffd93d;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23222" width="1200" height="600"/><circle cx="200" cy="150" r="100" fill="%23e74c3c" opacity="0.1"/><circle cx="1000" cy="400" r="150" fill="%233498db" opacity="0.1"/></svg>');
-            background-size: cover;
-            background-position: center;
-            padding: 8rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 4rem 2rem;
             text-align: center;
-            margin: 2rem 0;
-            border-radius: 10px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            animation: fadeInDown 0.8s ease;
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: #ecf0f1;
-            animation: fadeInUp 0.8s ease;
         }
 
-        .hero-buttons {
+        .hero-featured {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .featured-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .featured-card-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .featured-card-content {
+            padding: 1.5rem;
+            color: #333;
+        }
+
+        .featured-card h3 {
+            margin-bottom: 0.5rem;
+            color: #764ba2;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background: white;
+            padding: 2rem;
+            margin: -2rem 2rem 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-container {
             display: flex;
             gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .btn {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .search-container input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            transition: transform 0.2s;
         }
 
-        .btn-primary {
-            background: #e74c3c;
-            color: #fff;
+        .search-btn:hover {
+            transform: scale(1.05);
         }
 
-        .btn-primary:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        /* Category Filter */
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: #fff;
-            border: 2px solid #e74c3c;
+        .category-btn {
+            padding: 0.5rem 1rem;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
         }
 
-        .btn-secondary:hover {
-            background: #e74c3c;
-            transform: translateY(-2px);
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
         }
 
-        /* Categories Section */
-        .categories {
-            margin: 3rem 0;
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .content-section {
+            padding: 3rem 0;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 2rem;
-            color: #e74c3c;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .category-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .category-card:hover {
-            background: rgba(231, 76, 60, 0.2);
-            border-color: #e74c3c;
-            transform: translateY(-5px);
-        }
-
-        .category-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Content Grid */
-        .content-section {
-            margin: 3rem 0;
-        }
-
+        /* Content Grid/Carousel */
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .content-card {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(231, 76, 60, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
         }
 
         .content-card:hover {
-            transform: scale(1.05);
-            border-color: #e74c3c;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .content-poster {
+        .content-card-img {
             width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            color: rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .content-info {
+        .content-card-img::after {
+            content: attr(data-icon);
+        }
+
+        .content-card-content {
             padding: 1.5rem;
         }
 
-        .content-info h3 {
+        .content-card h3 {
             margin-bottom: 0.5rem;
-            color: #e74c3c;
+            color: #333;
         }
 
-        .content-info p {
-            font-size: 0.9rem;
-            color: #bdc3c7;
+        .content-card .category {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            color: #666;
+            font-size: 0.95rem;
             margin-bottom: 1rem;
         }
 
         .rating {
-            color: #f39c12;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffd93d;
+            font-size: 1.2rem;
+        }
+
+        .rating-value {
+            color: #666;
+            font-weight: bold;
+        }
+
+        .review-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .review-btn:hover {
+            transform: scale(1.05);
         }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
             margin-top: 4rem;
-            border-top: 2px solid #e74c3c;
-            text-align: center;
         }
 
-        .footer-content {
+        footer .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
-            text-align: left;
         }
 
-        .footer-section h4 {
-            color: #e74c3c;
+        footer h4 {
             margin-bottom: 1rem;
+            color: #ffd93d;
         }
 
-        .footer-section ul {
+        footer ul {
             list-style: none;
         }
 
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a {
-            color: #bdc3c7;
+        footer a {
+            color: #aaa;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
-        .footer-section a:hover {
-            color: #e74c3c;
+        footer a:hover {
+            color: #ffd93d;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            border-top: 1px solid #333;
             padding-top: 2rem;
-            color: #95a5a6;
+            color: #aaa;
         }
 
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
             .hero h1 {
                 font-size: 2rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            nav ul {
+                gap: 1rem;
             }
 
-            .category-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            .search-container {
+                flex-direction: column;
             }
 
             .content-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
+    <!-- Navigation -->
+    <nav>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">🎬 EntertainHub</div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#categories">Categories</a></li>
-                        <li><a href="#trending">Trending</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+            <div class="logo">🎬 Sunshine Coast Entertainment</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shows">Shows</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <h1>Welcome to EntertainHub</h1>
-            <p>Your ultimate destination for movies, shows, music, and more</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="scrollToSection('categories')">Explore Now</button>
-                <button class="btn btn-secondary" onclick="alert('Sign up feature coming soon!')">Sign Up</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="categories" id="categories">
-        <div class="container">
-            <h2 class="section-title">Entertainment Categories</h2>
-            <div class="category-grid">
-                <div class="category-card" onclick="showCategory('Movies')">
-                    <div class="category-icon">🎥</div>
-                    <h3>Movies</h3>
-                    <p>Blockbusters and Classics</p>
+        <div class="hero-content">
+            <h1>Experience Entertainment Like Never Before</h1>
+            <p>Discover Roving Entertainment Shows & Exclusive Features</p>
+            <div class="hero-featured">
+                <div class="featured-card">
+                    <div class="featured-card-img">🎪</div>
+                    <div class="featured-card-content">
+                        <h3>Live Shows</h3>
+                        <p>Watch incredible roving entertainment performances</p>
+                    </div>
                 </div>
-                <div class="category-card" onclick="showCategory('TV Shows')">
-                    <div class="category-icon">📺</div>
-                    <h3>TV Shows</h3>
-                    <p>Binge-worthy Series</p>
+                <div class="featured-card">
+                    <div class="featured-card-img">🎥</div>
+                    <div class="featured-card-content">
+                        <h3>Behind the Scenes</h3>
+                        <p>Get exclusive content and production insights</p>
+                    </div>
                 </div>
-                <div class="category-card" onclick="showCategory('Music')">
-                    <div class="category-icon">🎵</div>
-                    <h3>Music</h3>
-                    <p>Top Hits & Artists</p>
-                </div>
-                <div class="category-card" onclick="showCategory('Podcasts')">
-                    <div class="category-icon">🎙️</div>
-                    <h3>Podcasts</h3>
-                    <p>Stories & Interviews</p>
-                </div>
-                <div class="category-card" onclick="showCategory('Gaming')">
-                    <div class="category-icon">🎮</div>
-                    <h3>Gaming</h3>
-                    <p>Latest Games & Reviews</p>
-                </div>
-                <div class="category-card" onclick="showCategory('Live Events')">
-                    <div class="category-icon">🎪</div>
-                    <h3>Live Events</h3>
-                    <p>Concerts & Festivals</p>
+                <div class="featured-card">
+                    <div class="featured-card-img">⭐</div>
+                    <div class="featured-card-content">
+                        <h3>Top Rated</h3>
+                        <p>See what audiences love the most</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trending Section -->
-    <section class="content-section" id="trending">
+    <!-- Search & Filter -->
+    <div class="container">
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search shows, performers, features...">
+                <button class="search-btn" onclick="handleSearch()">Search</button>
+            </div>
+            <div class="filter-section" style="margin-top: 1.5rem;">
+                <button class="category-btn active" onclick="filterByCategory('all')">All</button>
+                <button class="category-btn" onclick="filterByCategory('comedy')">Comedy</button>
+                <button class="category-btn" onclick="filterByCategory('magic')">Magic</button>
+                <button class="category-btn" onclick="filterByCategory('music')">Music</button>
+                <button class="category-btn" onclick="filterByCategory('acrobatics')">Acrobatics</button>
+                <button class="category-btn" onclick="filterByCategory('variety')">Variety</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shows Section -->
+    <section class="content-section" id="shows">
         <div class="container">
-            <h2 class="section-title">Trending Now</h2>
-            <div class="content-grid">
-                <div class="content-card">
-                    <div class="content-poster">🎬</div>
-                    <div class="content-info">
-                        <h3>Epic Adventure Film</h3>
-                        <p>An thrilling journey across continents</p>
-                        <div class="rating">★★★★★ 9.2/10</div>
-                        <button class="btn btn-primary" style="width: 100%;">Watch Now</button>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <div class="content-poster">📺</div>
-                    <div class="content-info">
-                        <h3>Mystery Series</h3>
-                        <p>Uncover dark secrets in this gripping drama</p>
-                        <div class="rating">★★★★☆ 8.7/10</div>
-                        <button class="btn btn-primary" style="width: 100%;">Watch Now</button>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <div class="content-poster">🎵</div>
-                    <div class="content-info">
-                        <h3>Summer Hits Album</h3>
-                        <p>The hottest tracks of the season</p>
-                        <div class="rating">★★★★★ 9.0/10</div>
-                        <button class="btn btn-primary" style="width: 100%;">Listen Now</button>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <div class="content-poster">🎮</div>
-                    <div class="content-info">
-                        <h3>Action RPG</h3>
-                        <p>Battle through fantasy realms with friends</p>
-                        <div class="rating">★★★★☆ 8.5/10</div>
-                        <button class="btn btn-primary" style="width: 100%;">Play Now</button>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <div class="content-poster">🎙️</div>
-                    <div class="content-info">
-                        <h3>True Crime Podcast</h3>
-                        <p>Real stories, real mysteries, real answers</p>
-                        <div class="rating">★★★★★ 9.3/10</div>
-                        <button class="btn btn-primary" style="width: 100%;">Listen Now</button>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <div class="content-poster">🎪</div>
-                    <div class="content-info">
-                        <h3>Summer Music Festival</h3>
-                        <p>Three days of amazing live performances</p>
-                        <div class="rating">★★★★★ 9.1/10</div>
-                        <button class="btn btn-primary" style="width: 100%;">Get Tickets</button>
-                    </div>
-                </div>
+            <h2 class="section-title">🎭 Featured Shows</h2>
+            <div class="content-grid" id="showsGrid">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="content-section" id="features">
+        <div class="container">
+            <h2 class="section-title">✨ Exclusive Features</h2>
+            <div class="content-grid" id="featuresGrid">
+                <!-- Content will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -456,55 +490,241 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>About Us</h4>
-                    <p>EntertainHub is your premier destination for all entertainment needs, bringing you the best content from around the world.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#categories">Categories</a></li>
-                        <li><a href="#trending">Trending</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Feedback</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                    </ul>
-                </div>
+            <div>
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#about">Company Info</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 EntertainHub. All rights reserved.</p>
+            <div>
+                <h4>Content</h4>
+                <ul>
+                    <li><a href="#shows">Shows</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
             </div>
+            <div>
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#help">Help Center</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sunshine Coast Entertainment. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+        // Sample content data
+        const shows = [
+            {
+                id: 1,
+                title: 'The Great Comedy Tour',
+                category: 'comedy',
+                description: 'Hilarious roving comedy show with international performers',
+                icon: '🎪',
+                rating: 4.8,
+                reviews: 324
+            },
+            {
+                id: 2,
+                title: 'Mystical Magic Extravaganza',
+                category: 'magic',
+                description: 'Mind-bending illusions and magical performances',
+                icon: '✨',
+                rating: 4.9,
+                reviews: 456
+            },
+            {
+                id: 3,
+                title: 'Rhythms Around the World',
+                category: 'music',
+                description: 'Live music performances featuring global artists',
+                icon: '🎵',
+                rating: 4.7,
+                reviews: 289
+            },
+            {
+                id: 4,
+                title: 'Acrobatic Thrills',
+                category: 'acrobatics',
+                description: 'Death-defying aerial performances and stunts',
+                icon: '🤸',
+                rating: 4.9,
+                reviews: 512
+            },
+            {
+                id: 5,
+                title: 'Variety Spectacular',
+                category: 'variety',
+                description: 'A mix of everything - comedy, music, magic, and more',
+                icon: '🎭',
+                rating: 4.6,
+                reviews: 378
+            },
+            {
+                id: 6,
+                title: 'Comedy Night Live',
+                category: 'comedy',
+                description: 'Stand-up comedy from the funniest performers on tour',
+                icon: '😂',
+                rating: 4.5,
+                reviews: 201
             }
+        ];
+
+        const features = [
+            {
+                id: 1,
+                title: 'Behind The Scenes: Comedy Central',
+                category: 'comedy',
+                description: 'Exclusive look at how our comedy shows are created',
+                icon: '🎬',
+                rating: 4.7,
+                reviews: 145
+            },
+            {
+                id: 2,
+                title: 'Performer Spotlight: The Magician',
+                category: 'magic',
+                description: 'Interview with world-renowned illusionist Marcus',
+                icon: '🎙️',
+                rating: 4.8,
+                reviews: 267
+            },
+            {
+                id: 3,
+                title: 'Making of: Global Music Tour',
+                category: 'music',
+                description: 'Production story of our international music showcase',
+                icon: '🎸',
+                rating: 4.6,
+                reviews: 189
+            },
+            {
+                id: 4,
+                title: 'Training Chronicles: Acrobats',
+                category: 'acrobatics',
+                description: 'See how our acrobats train for their dangerous acts',
+                icon: '💪',
+                rating: 4.9,
+                reviews: 334
+            },
+            {
+                id: 5,
+                title: 'Festival Coverage 2026',
+                category: 'variety',
+                description: 'Full coverage of this year\'s entertainment festival',
+                icon: '🎉',
+                rating: 4.7,
+                reviews: 456
+            },
+            {
+                id: 6,
+                title: 'Travels with Performers',
+                category: 'variety',
+                description: 'Travel documentary following our roving shows',
+                icon: '✈️',
+                rating: 4.8,
+                reviews: 278
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function createCardHTML(item) {
+            const stars = '⭐'.repeat(Math.floor(item.rating));
+            return `
+                <div class="content-card">
+                    <div class="content-card-img" data-icon="${item.icon}"></div>
+                    <div class="content-card-content">
+                        <span class="category">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <div class="rating">
+                            <span class="stars">${stars}</span>
+                            <span class="rating-value">${item.rating}/5 (${item.reviews})</span>
+                        </div>
+                        <button class="review-btn" onclick="alert('Thanks for your interest in: ${item.title}')">View Details</button>
+                    </div>
+                </div>
+            `;
         }
 
-        function showCategory(category) {
-            alert(`Welcome to ${category}! Content coming soon.`);
+        function renderContent(contentArray, gridId) {
+            const grid = document.getElementById(gridId);
+            let filtered = contentArray;
+
+            if (currentFilter !== 'all') {
+                filtered = contentArray.filter(item => item.category === currentFilter);
+            }
+
+            grid.innerHTML = filtered.map(createCardHTML).join('');
         }
+
+        function filterByCategory(category) {
+            currentFilter = category;
+            
+            // Update button states
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Re-render both grids
+            renderContent(shows, 'showsGrid');
+            renderContent(features, 'featuresGrid');
+        }
+
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const showsGrid = document.getElementById('showsGrid');
+            const featuresGrid = document.getElementById('featuresGrid');
+
+            if (searchTerm.trim() === '') {
+                renderContent(shows, 'showsGrid');
+                renderContent(features, 'featuresGrid');
+                return;
+            }
+
+            const filteredShows = shows.filter(item => 
+                item.title.toLowerCase().includes(searchTerm) ||
+                item.description.toLowerCase().includes(searchTerm)
+            );
+
+            const filteredFeatures = features.filter(item =>
+                item.title.toLowerCase().includes(searchTerm) ||
+                item.description.toLowerCase().includes(searchTerm)
+            );
+
+            showsGrid.innerHTML = filteredShows.length > 0 
+                ? filteredShows.map(createCardHTML).join('')
+                : '<p style="grid-column: 1/-1; text-align: center; color: #999;">No shows found matching your search.</p>';
+
+            featuresGrid.innerHTML = filteredFeatures.length > 0
+                ? filteredFeatures.map(createCardHTML).join('')
+                : '<p style="grid-column: 1/-1; text-align: center; color: #999;">No features found matching your search.</p>';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderContent(shows, 'showsGrid');
+            renderContent(features, 'featuresGrid');
+        });
     </script>
 </body>
 </html>
