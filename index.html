@@ -284,6 +284,48 @@
         .content-card-img::after {
             content: attr(data-icon);
         }
+        .content-card-poster {
+            display: block;
+            position: relative;
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .poster-image {
+            width: 100%;
+            padding-top: 56.25%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .poster-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .poster-play {
+            font-size: 2.5rem;
+            margin-bottom: 0.4rem;
+            display: inline-block;
+        }
+
+        .poster-text {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
         .content-card-video-wrap {
             width: 100%;
             position: relative;
@@ -561,6 +603,7 @@
                 icon: '🎪',
                 video: 'https://player.vimeo.com/video/695996984',
                 videoLink: 'https://vimeo.com/695996984',
+                poster: 'https://via.placeholder.com/800x450/4e54c8/ffffff?text=Great+Comedy+Tour',
                 rating: 4.8,
                 reviews: 324
             },
@@ -677,10 +720,13 @@
             return `
                 <div class="content-card">
                     ${hasVideo ? 
-                        `<div class="content-card-video-wrap"><iframe class="content-card-video" src="${item.video}?badge=0&autoplay=0&title=0&byline=0" 
-                            title="${item.title}" frameborder="0" 
-                            allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
-                            allowfullscreen loading="lazy"></iframe></div>` :
+                        `<a class="content-card-poster" href="${item.videoLink}" target="_blank" rel="noopener">
+                            <div class="poster-image" style="background-image: url('${item.poster}')"></div>
+                            <div class="poster-overlay">
+                                <span class="poster-play">►</span>
+                                <span class="poster-text">Watch The Great Comedy Tour</span>
+                            </div>
+                        </a>` :
                         `<div class="content-card-img" data-icon="${item.icon}"></div>`
                     }
                     <div class="content-card-content">
